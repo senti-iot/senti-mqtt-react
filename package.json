@@ -22,6 +22,18 @@
     "type": "git",
     "url": "git+https://github.com/senti-platform/senti-mqtt-react.git"
   },
+  "keywords": [
+    "senti",
+    "senti.cloud",
+    "iot",
+    "smartcity",
+    "internet-of-things",
+    "mqtt",
+    "mqtt-client",
+	"senti-in-a-box",
+	"react",
+	"react-mqtt"
+  ],
   "author": "Christian Broberg",
   "license": "MIT",
   "bugs": {
