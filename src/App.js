@@ -6,19 +6,8 @@ import mqtt from 'mqtt'
 
 var client = mqtt.connect('ws://hive.senti.cloud:8083')
 
+
 // var clientId = options.clientId
-
-/* client.on('connect', function () {
-	client.subscribe('sensor/test', function (err) {
-		if (!err) {			
-			client.publish('sensor/status/' + clientId, 'online ', { retain: false })
-			client.publish('sensor/test', clientId + ': connected')
-			client.subscribe('sensor/update')
-			console.log('Connected')
-		}
-	})
-}) */
-
 
 class App extends Component {
 	constructor(props) {
@@ -31,11 +20,40 @@ class App extends Component {
 
 	componentDidMount() {
 		client.subscribe('sensor/test')
+		client.subscribe('sensor/status/#')
+		// client.subscribe('owntracks/user/mrbrobs')
+		
 		client.on('message', (topic, message) => {
-			if (topic.toString() === 'sensor/test') {
-				// console.log(message.toString())
-				this.updateData(message.toString())
+
+			switch (topic.toString()) {
+				case 'sensor/test':
+					this.updateData(message.toString())
+					break
+				// case 'sensor/status/#':
+				// 	this.updateData(message.toString())
+				// 	break
+				case 'sensor/status/8020':
+					this.updateData('8020: ' + message.toString())
+					break
+				case 'sensor/status/cb-air':
+					this.updateData('cb-air: ' + message.toString())
+					break
+				case 'sensor/status/cb-pro.local':
+					this.updateData('cb-pro.local: ' + message.toString())
+					break
+				// case 'owntracks/user/mrbrobs':
+				// 	this.updateData('mylocation: ' + message.toString())
+				// 	console.log(message.toString())
+				// 	break
+				default:
+					// console.log('Message discarded ...')
+					break
 			}
+
+			// if (topic.toString() === 'sensor/test') {
+			// 	console.log(message.toString())
+			// 	this.updateData(message.toString())
+			// }
 		})
 	}
 
