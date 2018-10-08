@@ -14,7 +14,8 @@ class App extends Component {
 		this.state = {
 			device1: '',
 			device2: '',
-			device3: ''
+			device3: '',
+			device4: ''
 		}
 	}
 
@@ -35,7 +36,7 @@ class App extends Component {
 					this.updateData(message.toString(), '3')
 					break
 				case 'owntracks/user/mrbrobs':
-					this.updateData('mylocation: ' + message.toString())
+					this.updateData(message.toString(), '4')
 					// console.log(message.toString())
 					break
 				default:
@@ -53,6 +54,8 @@ class App extends Component {
 				break
 			case '3': this.setState({ device3: received })
 				break
+			case '4': this.setState({ device4: received })
+				break
 			default:
 				break
 		}
@@ -65,6 +68,7 @@ class App extends Component {
 				<div>Device 1: {this.state.device1}</div>
 				<div>Device 2: {this.state.device2}</div>
 				<div>Device 3: {this.state.device3}</div>
+				<div>Device 4: {this.state.device4}</div>
 			</div>
 		)
 	}
