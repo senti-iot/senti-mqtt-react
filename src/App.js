@@ -1,5 +1,4 @@
 import React, { Component } from 'react'
-import './App.css'
 // import { options } from './options'
 // var mqtt = require('mqtt')
 import mqtt from 'mqtt'
