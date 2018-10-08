@@ -6,7 +6,6 @@ import mqtt from 'mqtt'
 
 var client = mqtt.connect('ws://hive.senti.cloud:8083')
 
-
 // var clientId = options.clientId
 
 class App extends Component {
@@ -14,57 +13,59 @@ class App extends Component {
 		super(props)
 
 		this.state = {
-			message: 'State constructed'
+			device1: '',
+			device2: '',
+			device3: ''
 		}
 	}
 
-	componentDidMount() {
-		client.subscribe('sensor/test')
-		client.subscribe('sensor/status/#')
-		// client.subscribe('owntracks/user/mrbrobs')
+	componentDidMount() {		
+		client.subscribe('senti/sensor/#')
+		client.subscribe('owntracks/user/mrbrobs')
 		
 		client.on('message', (topic, message) => {
 
 			switch (topic.toString()) {
-				case 'sensor/test':
-					this.updateData(message.toString())
+				case 'senti/sensor/sentiwi/8020/status':
+					this.updateData(message.toString(), '1')
 					break
-				// case 'sensor/status/#':
-				// 	this.updateData(message.toString())
-				// 	break
-				case 'sensor/status/8020':
-					this.updateData('8020: ' + message.toString())
+				case 'senti/sensor/darwin/cb-air/status':
+					this.updateData(message.toString(), '2')
 					break
-				case 'sensor/status/cb-air':
-					this.updateData('cb-air: ' + message.toString())
+				case 'senti/sensor/darwin/cb-pro.local/status':
+					this.updateData(message.toString(), '3')
 					break
-				case 'sensor/status/cb-pro.local':
-					this.updateData('cb-pro.local: ' + message.toString())
+				case 'owntracks/user/mrbrobs':
+					this.updateData('mylocation: ' + message.toString())
+					// console.log(message.toString())
 					break
-				// case 'owntracks/user/mrbrobs':
-				// 	this.updateData('mylocation: ' + message.toString())
-				// 	console.log(message.toString())
-				// 	break
 				default:
 					// console.log('Message discarded ...')
 					break
 			}
-
-			// if (topic.toString() === 'sensor/test') {
-			// 	console.log(message.toString())
-			// 	this.updateData(message.toString())
-			// }
 		})
 	}
 
-	updateData = (received) => {
-		this.setState({ message: received })
+	updateData = (received, device) => {
+		switch (device) {
+			case '1': this.setState({ device1: received })
+				break
+			case '2': this.setState({ device2: received })
+				break
+			case '3': this.setState({ device3: received })
+				break
+			default:
+				break
+		}
 	}
 
 	render() {
 		return (
 			<div>
-				Hello {this.state.message}
+				<h1>Senti MQTT React Client</h1>
+				<div>Device 1: {this.state.device1}</div>
+				<div>Device 2: {this.state.device2}</div>
+				<div>Device 3: {this.state.device3}</div>
 			</div>
 		)
 	}
