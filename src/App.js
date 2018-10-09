@@ -28,16 +28,16 @@ class App extends Component {
 
 			switch (topic.toString()) {
 				case 'senti/sensor/sentiwi/8020/status':
-					this.updateData(message.toString(), '1')
+					this.updateData('senti/sensor/sentiwi/8020/status: ' + message.toString(), '1')
 					break
 				case 'senti/sensor/darwin/cb-air/status':
-					this.updateData(message.toString(), '2')
+					this.updateData('senti/sensor/darwin/cb-air/status: ' + message.toString(), '2')
 					break
 				case 'senti/sensor/darwin/cb-pro.local/status':
-					this.updateData(message.toString(), '3')
+					this.updateData('senti/sensor/darwin/cb-pro.local/status: ' + message.toString(), '3')
 					break
 				case 'senti/sensor/linux/hive/status':
-					this.updateData(message.toString(), '4')
+					this.updateData('senti/sensor/linux/hive/status: ' + message.toString(), '4')
 					break
 				case 'owntracks/user/mrbrobs':
 					this.updateData(message.toString(), '5')
