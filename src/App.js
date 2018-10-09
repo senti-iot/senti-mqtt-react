@@ -15,7 +15,8 @@ class App extends Component {
 			device1: '',
 			device2: '',
 			device3: '',
-			device4: ''
+			device4: '',
+			device5: ''
 		}
 	}
 
@@ -35,12 +36,15 @@ class App extends Component {
 				case 'senti/sensor/darwin/cb-pro.local/status':
 					this.updateData(message.toString(), '3')
 					break
-				case 'owntracks/user/mrbrobs':
+				case 'senti/sensor/linux/hive/status':
 					this.updateData(message.toString(), '4')
+					break
+				case 'owntracks/user/mrbrobs':
+					this.updateData(message.toString(), '5')
 					// console.log(message.toString())
 					break
 				default:
-					// console.log('Message discarded ...')
+					// console.log('Message discarded ...') senti/sensor/linux/hive/status
 					break
 			}
 		})
@@ -56,6 +60,8 @@ class App extends Component {
 				break
 			case '4': this.setState({ device4: received })
 				break
+			case '5': this.setState({ device5: received })
+				break
 			default:
 				break
 		}
@@ -69,6 +75,7 @@ class App extends Component {
 				<div>Device 2: {this.state.device2}</div>
 				<div>Device 3: {this.state.device3}</div>
 				<div>Device 4: {this.state.device4}</div>
+				<div>Device 5: {this.state.device5}</div>
 			</div>
 		)
 	}
