@@ -75,6 +75,7 @@ class App extends Component {
 				<div>Device 2: {this.state.device2}</div>
 				<div>Device 3: {this.state.device3}</div>
 				<div>Device 4: {this.state.device4}</div>
+				<div>----</div>
 				<div>Device 5: {this.state.device5}</div>
 			</div>
 		)
