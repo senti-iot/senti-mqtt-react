@@ -35,7 +35,7 @@ class App extends Component {
 				case 'senti/sensor/darwin/cb-pro.local/status':
 					this.updateData('senti/sensor/darwin/cb-pro.local/status: ' + message.toString(), '3')
 					break
-				case 'senti/sensor/linux/hive/status':
+				case 'senti/sensor/linux/hive.senti.cloud/status':
 					this.updateData('senti/sensor/linux/hive.senti.cloud/status: ' + message.toString(), '4')
 					break
 				case 'owntracks/user/mrbrobs':
