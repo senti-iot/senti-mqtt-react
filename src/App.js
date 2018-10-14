@@ -1,6 +1,5 @@
 import React, { Component } from 'react'
 // import { options } from './options'
-// var mqtt = require('mqtt')
 import mqtt from 'mqtt'
 
 var client = mqtt.connect('ws://hive.senti.cloud:8083')
@@ -37,7 +36,7 @@ class App extends Component {
 					this.updateData('senti/sensor/darwin/cb-pro.local/status: ' + message.toString(), '3')
 					break
 				case 'senti/sensor/linux/hive/status':
-					this.updateData('senti/sensor/linux/hive/status: ' + message.toString(), '4')
+					this.updateData('senti/sensor/linux/hive.senti.cloud/status: ' + message.toString(), '4')
 					break
 				case 'owntracks/user/mrbrobs':
 					this.updateData(message.toString(), '5')
